@@ -2,7 +2,12 @@ import { useState } from 'react'
 import animals from './animals'
 
 function App() {
-  const [wichAnimal, setAnimal] = useState({ name: '', author: '', id: '' })
+  const [wichAnimal, setAnimal] = useState({
+    name: '',
+    author: '',
+    id: '',
+    dontKnow: '',
+  })
   const [animalsList, setAnimalList] = useState(animals)
 
   //add element
@@ -61,6 +66,7 @@ function App() {
               <li key={elem.id} className='columns-5 px-2 py-1'>
                 <div className='text-black'> {elem.name}</div>
                 <div className='text-black'>{elem.author}</div>
+                <div className='text-black'>{elem.dontKnow}</div>
 
                 <div>
                   <button
@@ -101,14 +107,23 @@ function App() {
           />
           <input
             className='my-4 border px-1 text-emerald-800'
-            name='name'
+            name='author'
             type='text'
             value={wichAnimal.author}
             onChange={event => {
               handleFormField('author', event.target.value)
             }}
           />
-
+          <select
+            name='dontKnow'
+            onChange={event => {
+              handleFormField('dontKnow', event.target.value)
+            }}
+          >
+            <option value='FrontEnd'>FrontEnd</option>
+            <option value='BackEnd'>BackEnd</option>
+            <option value='UI/UX'>UI/UX</option>
+          </select>
           <button
             type='submit'
             className='mx-1 border-1 px-4 text-slate-900 hover:border-2'
